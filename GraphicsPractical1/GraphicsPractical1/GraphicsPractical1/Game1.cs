@@ -28,7 +28,6 @@ namespace GraphicsPractical1
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
             this.graphics.PreferredBackBufferWidth = 800;
             this.graphics.PreferredBackBufferHeight = 600;
             this.graphics.IsFullScreen = false;
@@ -46,7 +45,6 @@ namespace GraphicsPractical1
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             this.effect = new BasicEffect(this.GraphicsDevice);
-            this.setupVertices();
             this.effect.VertexColorEnabled = true;
             this.effect.LightingEnabled = true;
             this.effect.DirectionalLight0.Enabled = true;
@@ -55,25 +53,15 @@ namespace GraphicsPractical1
             this.effect.AmbientLightColor = new Vector3(0.3f);
 
             Texture2D map = Content.Load<Texture2D>("heightmap");
-            this.terrain = new Terrain(new HeightMap(map), 0.2f);
+            this.terrain = new Terrain(new HeightMap(map), 0.2f, this.GraphicsDevice);
 
             this.camera = new Camera(new Vector3(60, 80, -80), new Vector3(0, 0, 0), new Vector3(0, 1, 0));
         }
 
-        protected override void UnloadContent()
-        {
-            // TODO: Unload any non ContentManager content here
-        }
-
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
 
             float timeStep = (float)gameTime.ElapsedGameTime.TotalSeconds;
