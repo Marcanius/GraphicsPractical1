@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphicsPractical1", "GraphicsPractical1\GraphicsPractical1\GraphicsPractical1.csproj", "{922EC0DA-2CFB-4625-9269-138D476116DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphicsPractical1Content", "GraphicsPractical1\GraphicsPractical1Content\GraphicsPractical1Content.contentproj", "{B1CD047B-29CF-4433-8394-18A34D9EE5FA}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{922EC0DA-2CFB-4625-9269-138D476116DF}.Debug|x86.ActiveCfg = Debug|x86
+		{922EC0DA-2CFB-4625-9269-138D476116DF}.Debug|x86.Build.0 = Debug|x86
+		{922EC0DA-2CFB-4625-9269-138D476116DF}.Release|x86.ActiveCfg = Release|x86
+		{922EC0DA-2CFB-4625-9269-138D476116DF}.Release|x86.Build.0 = Release|x86
+		{B1CD047B-29CF-4433-8394-18A34D9EE5FA}.Debug|x86.ActiveCfg = Debug|x86
+		{B1CD047B-29CF-4433-8394-18A34D9EE5FA}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
