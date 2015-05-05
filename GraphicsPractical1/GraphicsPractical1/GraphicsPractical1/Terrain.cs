@@ -57,7 +57,7 @@ namespace GraphicsPractical1
 
             return vertices;
         }
-        
+
         private void setupIndices()
         {
             this.indices = new short[(this.width - 1) * (this.height - 1) * 6];
@@ -104,7 +104,7 @@ namespace GraphicsPractical1
             for (int i = 0; i < this.vertices.Length; i++)
                 this.vertices[i].Normal.Normalize();
         }
-        
+
         // The copyToBuffers method. Used to store all the vertices and indices in the GPU memory.
         private void copyToBuffers(GraphicsDevice device)
         {
@@ -119,13 +119,13 @@ namespace GraphicsPractical1
             device.Indices = this.indexBuffer;
             device.SetVertexBuffer(this.vertexBuffer);
         }
-        
+
         // Property to return the width.
         public int Width
         {
             get { return this.width; }
         }
-        
+
         // Property to return the height.
         public int Height
         {

@@ -73,7 +73,6 @@ namespace GraphicsPractical1
             float timeStep = (float)gameTime.ElapsedGameTime.TotalSeconds;
             this.Window.Title = "Graphics Tutorial | FPS: " + this.frameRateCounter.FrameRate;
 
-
             camera.Update(gameTime);
             base.Update(gameTime);
         }
@@ -89,7 +88,7 @@ namespace GraphicsPractical1
             };
 
             // Coloring the background.
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.DarkBlue);
 
             // Passing the matrices in order to draw everyhitng at the right place.
             this.effect.Projection = this.camera.ProjectionMatrix;

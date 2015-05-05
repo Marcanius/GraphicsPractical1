@@ -44,15 +44,15 @@ namespace GraphicsPractical1
 
             // Check to see if the left key is pressed.
             if (kbState.IsKeyDown(Keys.Left))
-                deltaAngleH += -3 * timeStep;
+                deltaAngleH += -0.5f * timeStep;
             // Check to see if the right key is pressed.
             if (kbState.IsKeyDown(Keys.Right))
-                deltaAngleH += 3 * timeStep;
+                deltaAngleH += 0.5f * timeStep;
             if (kbState.IsKeyDown(Keys.Up))
-                deltaAngleV += -3 * timeStep;
+                deltaAngleV += -0.5f * timeStep;
             // Check to see if the right key is pressed.
             if (kbState.IsKeyDown(Keys.Down))
-                deltaAngleV += 3 * timeStep;
+                deltaAngleV += 0.5f * timeStep;
 
             // Check to see if the matrix needs to be adjusted with the new angle.
             if (deltaAngleH != 0 || deltaAngleV != 0)
@@ -65,19 +65,19 @@ namespace GraphicsPractical1
 
             // The four cardinal directions.
             if (kbState.IsKeyDown(Keys.W))
-                moveCamera(timeStep, new Vector3((float)Math.Cos(angleH), 0, (float)Math.Sin(angleH)) * 50);
+                moveCamera(timeStep, new Vector3((float)Math.Cos(angleH), 0, (float)Math.Sin(angleH)) * 10);
             if (kbState.IsKeyDown(Keys.A))
-                moveCamera(timeStep, new Vector3((float)Math.Sin(angleH), 0, -(float)Math.Cos(angleH)) * 50);
+                moveCamera(timeStep, new Vector3((float)Math.Sin(angleH), 0, -(float)Math.Cos(angleH)) * 10);
             if (kbState.IsKeyDown(Keys.S))
-                moveCamera(timeStep, new Vector3(-(float)Math.Cos(angleH), 0, -(float)Math.Sin(angleH)) * 50);
+                moveCamera(timeStep, new Vector3(-(float)Math.Cos(angleH), 0, -(float)Math.Sin(angleH)) * 10);
             if (kbState.IsKeyDown(Keys.D))
-                moveCamera(timeStep, new Vector3(-(float)Math.Sin(angleH), 0, (float)Math.Cos(angleH)) * 50);
+                moveCamera(timeStep, new Vector3(-(float)Math.Sin(angleH), 0, (float)Math.Cos(angleH)) * 10);
 
             // Up and Down
             if (kbState.IsKeyDown(Keys.Space))
-                moveCamera(timeStep, new Vector3(0, 5, 0) * 10);
+                moveCamera(timeStep, new Vector3(0, 1, 0) * 10);
             if (kbState.IsKeyDown(Keys.LeftShift))
-                moveCamera(timeStep, new Vector3(0, -5, 0) * 10);
+                moveCamera(timeStep, new Vector3(0, -1, 0) * 10);
         }
 
         private void UpdateFocus()

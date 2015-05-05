@@ -21,7 +21,7 @@ namespace GraphicsPractical1
             if (height <= 51)
                 return Color.Blue;
             else if (height < 58)
-                return new Color(166, 120, 3);
+                return new Color(73, 120, 3);
             else if (height < 116)
                 return new Color(202, 147, 8);
             else if (height < 162)
@@ -34,6 +34,8 @@ namespace GraphicsPractical1
                 return new Color(197, 151, 106);
             else
                 return new Color(239, 210, 130);
+
+            
         }
 
         /// <summary>
