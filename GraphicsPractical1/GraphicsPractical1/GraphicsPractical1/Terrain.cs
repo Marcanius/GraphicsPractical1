@@ -45,10 +45,35 @@ namespace GraphicsPractical1
                     float h = heightMap[x, y] * heightScale;
 
                     vertices[v].Position = new Vector3(x, h, -y);
-                    vertices[v].Color = Color.Green;
+                    vertices[v].Color = calculateColor(heightMap[x, y]);
                 }
 
             return vertices;
+        }
+
+        private Color calculateColor(float height)
+        {
+            if (height <= 51)
+                return Color.Blue;
+            else if (height < 58)
+                return new Color(166, 120, 3);
+            else if (height < 116)
+                return new Color(202, 147, 8);
+            else if (height < 162)
+                return new Color(132, 99, 0);
+            else if (height < 170)
+                return new Color(212, 159, 0);
+            else if (height < 183)
+                return new Color(178, 146, 63);
+            else if (height < 198)
+                return new Color(197, 151, 106);
+            else
+                return new Color(239, 210, 130);
+
+
+
+
+            return Color.White;
         }
 
         private void setupIndices()
