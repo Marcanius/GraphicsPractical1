@@ -60,7 +60,7 @@ namespace GraphicsPractical1
             this.terrain = new Terrain(new HeightMap(map), 0.2f, this.GraphicsDevice);
 
             // Loading of the camera and its position.
-            this.camera = new Camera(new Vector3(60, 60, 60), new Vector3(0, 0, 1), new Vector3(0, 1, 0));
+            this.camera = new Camera(new Vector3(0, 60, 0), new Vector3(0, 0, -10), new Vector3(0, 1, 0));
         }
 
         protected override void Update(GameTime gameTime)

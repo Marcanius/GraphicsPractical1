@@ -15,9 +15,7 @@ namespace GraphicsPractical1
     public class Camera
     {
         private Matrix viewMatrix, projectionMatrix;
-        private Vector3 up, eye, focus;
-        Vector3 cameraReference;
-        Matrix rotationMatrixH, rotationMatrixV;
+        private Vector3 up, eye, focus, relativeFocus;
         float angleH, deltaAngleH, angleV, deltaAngleV;
         Vector3 transformedReference;
 
@@ -28,8 +26,10 @@ namespace GraphicsPractical1
             this.focus = camFocus;
             this.updateViewMatrix();
             this.projectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, aspectRatio, 1.0f, 300.0f);
+            angleH = 1;
+            angleV = 0;
 
-            cameraReference = new Vector3(0, 0, 1);
+            UpdateFocus();
         }
 
         public void Update(GameTime gT)
@@ -48,15 +48,6 @@ namespace GraphicsPractical1
             // Check to see if the right key is pressed.
             if (kbState.IsKeyDown(Keys.Right))
                 deltaAngleH += 3 * timeStep;
-
-            // Check to see if the matrix needs to be adjusted with the new angle.
-            if (deltaAngleH != 0)
-            {
-                angleH += deltaAngleH;
-                rotationMatrixH = Matrix.CreateRotationY(angleH);
-            }
-
-            // Check to see if the left key is pressed.
             if (kbState.IsKeyDown(Keys.Up))
                 deltaAngleV += -3 * timeStep;
             // Check to see if the right key is pressed.
@@ -64,34 +55,37 @@ namespace GraphicsPractical1
                 deltaAngleV += 3 * timeStep;
 
             // Check to see if the matrix needs to be adjusted with the new angle.
-            if (deltaAngleV != 0)
-            {
-                angleV += deltaAngleV;
-                rotationMatrixV = Matrix.CreateRotationX(angleV);
-            }
-
             if (deltaAngleH != 0 || deltaAngleV != 0)
             {
-                transformedReference = Vector3.Transform(cameraReference, rotationMatrixH);
-                transformedReference = Vector3.Transform(transformedReference, rotationMatrixV);
-                Focus = Eye + transformedReference;
+                angleH += deltaAngleH;
+                angleV = MathHelper.Clamp(angleV - deltaAngleV, -MathHelper.PiOver2 + 0.01F, MathHelper.PiOver2 - 0.01F);
+
+                UpdateFocus();
             }
 
             // The four cardinal directions.
             if (kbState.IsKeyDown(Keys.W))
-                moveCamera(timeStep, new Vector3(5, 0, 0));
+                moveCamera(timeStep, new Vector3((float)Math.Cos(angleH), 0, (float)Math.Sin(angleH)) * 50);
             if (kbState.IsKeyDown(Keys.A))
-                moveCamera(timeStep, new Vector3(0, 0, -5));
+                moveCamera(timeStep, new Vector3((float)Math.Sin(angleH), 0, -(float)Math.Cos(angleH)) * 50);
             if (kbState.IsKeyDown(Keys.S))
-                moveCamera(timeStep, new Vector3(-5, 0, 0));
+                moveCamera(timeStep, new Vector3(-(float)Math.Cos(angleH), 0, -(float)Math.Sin(angleH)) * 50);
             if (kbState.IsKeyDown(Keys.D))
-                moveCamera(timeStep, new Vector3(0, 0, 5));
+                moveCamera(timeStep, new Vector3(-(float)Math.Sin(angleH), 0, (float)Math.Cos(angleH)) * 50);
 
             // Up and Down
             if (kbState.IsKeyDown(Keys.Space))
-                moveCamera(timeStep, new Vector3(0, 5, 0));
+                moveCamera(timeStep, new Vector3(0, 5, 0) * 10);
             if (kbState.IsKeyDown(Keys.LeftShift))
-                moveCamera(timeStep, new Vector3(0, -5, 0));
+                moveCamera(timeStep, new Vector3(0, -5, 0) * 10);
+        }
+
+        private void UpdateFocus()
+        {
+            relativeFocus = new Vector3((float)Math.Cos(angleH), 0, (float)Math.Sin(angleH));
+            relativeFocus = new Vector3(relativeFocus.X * (float)Math.Cos(angleV), (float)Math.Sin(angleV), relativeFocus.Z * (float)Math.Cos(angleV));
+
+            Focus = Eye + relativeFocus;
         }
 
         private void moveCamera(float timeStep, Vector3 direction)
