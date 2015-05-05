@@ -8,10 +8,22 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GraphicsPractical1
 {
-    class FrameRateCounter : DrawableGameComponent
+    class FrameRateCounter
     {
-        int frameRate, frameCounter, secondsPassed;
+        /// <summary>
+        /// The integer containing the number of frames drawn in the last second.
+        /// </summary>
+        int frameRate; 
+        /// <summary>
+        /// The integer counting the number of frames drawn in the last second.
+        /// </summary>
+        int frameCounter; 
+        /// <summary>
+        /// The integer counting the number of seconds passed since the last 
+        ///
+        int secondsPassed;
 
+        /// <summary>
         public FrameRateCounter(Game game)
             : base(game)
         {
