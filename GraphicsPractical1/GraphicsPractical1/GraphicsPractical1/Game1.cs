@@ -60,7 +60,7 @@ namespace GraphicsPractical1
             this.terrain = new Terrain(new HeightMap(map), 0.2f, this.GraphicsDevice);
             
             // Loading of the camera and its position.
-            this.camera = new Camera(new Vector3(60, 180, -80), new Vector3(0, 0, 0), new Vector3(0, 1, 0));
+            this.camera = new Camera(new Vector3(60, 180, -80), new Vector3(20, 20, 20), new Vector3(0, 1, 0));
         }
 
         protected override void Update(GameTime gameTime)
@@ -72,21 +72,9 @@ namespace GraphicsPractical1
             // Info used for the FrameRateCounter.
             float timeStep = (float)gameTime.ElapsedGameTime.TotalSeconds;
             this.Window.Title = "Graphics Tutorial | FPS: " + this.frameRateCounter.FrameRate;
-            
-            // Checking for keyboard input and applying its interaction.
-            float deltaAngle = 0;
-            KeyboardState kbState = Keyboard.GetState();
-            
-            // Check to see if the left key is pressed.
-            if (kbState.IsKeyDown(Keys.Left))
-                deltaAngle += -3 * timeStep;
-            // Check to see if the right key is pressed.
-            if (kbState.IsKeyDown(Keys.Right))
-                deltaAngle += 3 * timeStep;
-            // Check to see if the matrix needs to be adjusted with the new angle.
-            if (deltaAngle != 0)
-                this.camera.Eye = Vector3.Transform(this.camera.Eye, Matrix.CreateRotationY(deltaAngle));
 
+
+            camera.Update(gameTime);
             base.Update(gameTime);
         }
 
