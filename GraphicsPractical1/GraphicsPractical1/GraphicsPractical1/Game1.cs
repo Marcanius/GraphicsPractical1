@@ -12,9 +12,7 @@ namespace GraphicsPractical1
 
         private FrameRateCounter frameRateCounter;
         private BasicEffect effect;
-        private VertexPositionColor[] vertices;
         private Camera camera;
-        private float[,] heightData;
         private Terrain terrain;
         
         // The construct for the game class.
@@ -53,7 +51,7 @@ namespace GraphicsPractical1
             this.effect.VertexColorEnabled = true;
             this.effect.LightingEnabled = true;
             this.effect.DirectionalLight0.Enabled = true;
-            this.effect.DirectionalLight0.DiffuseColor = Color.White.ToVector3();
+            this.effect.DirectionalLight0.DiffuseColor = new Color(202,173,66).ToVector3();
             this.effect.DirectionalLight0.Direction = new Vector3(0, -1, 0);
             this.effect.AmbientLightColor = new Vector3(0.3f);
             
@@ -62,7 +60,7 @@ namespace GraphicsPractical1
             this.terrain = new Terrain(new HeightMap(map), 0.2f, this.GraphicsDevice);
             
             // Loading of the camera and its position.
-            this.camera = new Camera(new Vector3(60, 80, -80), new Vector3(0, 0, 0), new Vector3(0, 1, 0));
+            this.camera = new Camera(new Vector3(60, 180, -80), new Vector3(0, 0, 0), new Vector3(0, 1, 0));
         }
 
         protected override void Update(GameTime gameTime)
