@@ -17,7 +17,6 @@ namespace GraphicsPractical1
         private Matrix viewMatrix, projectionMatrix;
         private Vector3 up, eye, focus, relativeFocus;
         float angleH, deltaAngleH, angleV, deltaAngleV;
-        Vector3 transformedReference;
 
         public Camera(Vector3 camEye, Vector3 camFocus, Vector3 camUp, float aspectRatio = 4.0f / 3.0f)
         {
