@@ -17,8 +17,8 @@ namespace GraphicsPractical1
         private Matrix viewMatrix, projectionMatrix;
         private Vector3 up, eye, focus;
         Vector3 cameraReference;
-        Matrix rotationMatrix;
-        float angle;
+        Matrix rotationMatrixH, rotationMatrixV;
+        float angleH, deltaAngleH, angleV, deltaAngleV;
         Vector3 transformedReference;
 
         public Camera(Vector3 camEye, Vector3 camFocus, Vector3 camUp, float aspectRatio = 4.0f / 3.0f)
@@ -36,29 +36,68 @@ namespace GraphicsPractical1
         {
 
             float timeStep = (float)gT.ElapsedGameTime.TotalSeconds;
-
-
+            deltaAngleH = 0;
+            deltaAngleV = 0;
 
             // Checking for keyboard input and applying its interaction.
-            float deltaAngle = 0;
             KeyboardState kbState = Keyboard.GetState();
 
             // Check to see if the left key is pressed.
             if (kbState.IsKeyDown(Keys.Left))
-                deltaAngle += -3 * timeStep;
+                deltaAngleH += -3 * timeStep;
             // Check to see if the right key is pressed.
             if (kbState.IsKeyDown(Keys.Right))
-                deltaAngle += 3 * timeStep;
+                deltaAngleH += 3 * timeStep;
+
             // Check to see if the matrix needs to be adjusted with the new angle.
-
-
-            if (deltaAngle != 0)
+            if (deltaAngleH != 0)
             {
-                angle += deltaAngle;
-                rotationMatrix = Matrix.CreateRotationY(angle);
-                transformedReference = Vector3.Transform(cameraReference, rotationMatrix);
-                this.Eye = this.Eye + transformedReference / 100;
+                angleH += deltaAngleH;
+                rotationMatrixH = Matrix.CreateRotationY(angleH);
             }
+
+            // Check to see if the left key is pressed.
+            if (kbState.IsKeyDown(Keys.Up))
+                deltaAngleV += -3 * timeStep;
+            // Check to see if the right key is pressed.
+            if (kbState.IsKeyDown(Keys.Down))
+                deltaAngleV += 3 * timeStep;
+
+            // Check to see if the matrix needs to be adjusted with the new angle.
+            if (deltaAngleV != 0)
+            {
+                angleV += deltaAngleV;
+                rotationMatrixV = Matrix.CreateRotationX(angleV);
+            }
+
+            if (deltaAngleH != 0 || deltaAngleV != 0)
+            {
+                transformedReference = Vector3.Transform(cameraReference, rotationMatrixH);
+                transformedReference = Vector3.Transform(transformedReference, rotationMatrixV);
+                Focus = Eye + transformedReference;
+            }
+
+            // The four cardinal directions.
+            if (kbState.IsKeyDown(Keys.W))
+                moveCamera(timeStep, new Vector3(5, 0, 0));
+            if (kbState.IsKeyDown(Keys.A))
+                moveCamera(timeStep, new Vector3(0, 0, -5));
+            if (kbState.IsKeyDown(Keys.S))
+                moveCamera(timeStep, new Vector3(-5, 0, 0));
+            if (kbState.IsKeyDown(Keys.D))
+                moveCamera(timeStep, new Vector3(0, 0, 5));
+
+            // Up and Down
+            if (kbState.IsKeyDown(Keys.Space))
+                moveCamera(timeStep, new Vector3(0, 5, 0));
+            if (kbState.IsKeyDown(Keys.LeftShift))
+                moveCamera(timeStep, new Vector3(0, -5, 0));
+        }
+
+        private void moveCamera(float timeStep, Vector3 direction)
+        {
+            Eye = Eye + direction * timeStep;
+            Focus = Focus + direction * timeStep;
         }
 
         private void updateViewMatrix()
