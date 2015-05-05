@@ -22,7 +22,7 @@ namespace GraphicsPractical1
             this.up = camUp;
             this.eye = camEye;
             this.focus = camFocus;
-
+//Testing
             this.updateViewMatrix();
             this.projectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, aspectRatio, 1.0f, 300.0f);
         }
