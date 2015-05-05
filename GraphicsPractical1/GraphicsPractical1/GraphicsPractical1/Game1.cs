@@ -16,16 +16,19 @@ namespace GraphicsPractical1
         private Camera camera;
         private float[,] heightData;
         private Terrain terrain;
-
+        
+        // The construct for the game class.
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-
+            
+            // Adding of the FrameRateCounter.
             this.frameRateCounter = new FrameRateCounter(this);
             this.Components.Add(this.frameRateCounter);
         }
-
+        
+        // The initialize method of the game class.
         protected override void Initialize()
         {
             this.graphics.PreferredBackBufferWidth = 800;
@@ -43,7 +46,8 @@ namespace GraphicsPractical1
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            
+            // Loading of all the effect properties.
             this.effect = new BasicEffect(this.GraphicsDevice);
             this.effect.VertexColorEnabled = true;
             this.effect.LightingEnabled = true;
@@ -51,96 +55,71 @@ namespace GraphicsPractical1
             this.effect.DirectionalLight0.DiffuseColor = Color.White.ToVector3();
             this.effect.DirectionalLight0.Direction = new Vector3(0, -1, 0);
             this.effect.AmbientLightColor = new Vector3(0.3f);
-
+            
+            // Loading of the heightmap.
             Texture2D map = Content.Load<Texture2D>("heightmap");
             this.terrain = new Terrain(new HeightMap(map), 0.2f, this.GraphicsDevice);
-
+            
+            // Loading of the camera and its position.
             this.camera = new Camera(new Vector3(60, 80, -80), new Vector3(0, 0, 0), new Vector3(0, 1, 0));
         }
 
         protected override void Update(GameTime gameTime)
         {
-            // Allows the game to exit
+            // Allows the game to exit.
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
-
+            
+            // Info used for the FrameRateCounter.
             float timeStep = (float)gameTime.ElapsedGameTime.TotalSeconds;
-
             this.Window.Title = "Graphics Tutorial | FPS: " + this.frameRateCounter.FrameRate;
-
+            
+            // Checking for keyboard input and applying its interaction.
             float deltaAngle = 0;
             KeyboardState kbState = Keyboard.GetState();
-
+            
+            // Check to see if the left key is pressed.
             if (kbState.IsKeyDown(Keys.Left))
                 deltaAngle += -3 * timeStep;
+            // Check to see if the right key is pressed.
             if (kbState.IsKeyDown(Keys.Right))
                 deltaAngle += 3 * timeStep;
+            // Check to see if the matrix needs to be adjusted with the new angle.
             if (deltaAngle != 0)
                 this.camera.Eye = Vector3.Transform(this.camera.Eye, Matrix.CreateRotationY(deltaAngle));
 
             base.Update(gameTime);
         }
 
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        // The Draw method of the game class.
         protected override void Draw(GameTime gameTime)
         {
+            // Configuration of how to draw the triangles.
             this.GraphicsDevice.RasterizerState = new RasterizerState
             {
                 CullMode = CullMode.None,
                 FillMode = FillMode.Solid
             };
-
+            
+            // Coloring the background.
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            
+            // Passing the matrices in order to draw everyhitng at the right place.
             this.effect.Projection = this.camera.ProjectionMatrix;
             this.effect.View = this.camera.ViewMatrix;
             Matrix translation = Matrix.CreateTranslation(-0.5f * this.terrain.Width, 0, 0.5f * this.terrain.Width);
             this.effect.World = translation;
-
+            
+            // Processing the passes in the effect.
             foreach (EffectPass pass in this.effect.CurrentTechnique.Passes)
             {
                 pass.Apply();
             }
-
+            
+            // Drawing the terrain
             this.terrain.Draw(this.GraphicsDevice);
 
             base.Draw(gameTime);
-        }
-
-        private void setupVertices()
-        {
-            this.vertices = new VertexPositionColor[3];
-
-            this.vertices[0].Position = new Vector3(0f, -0f, 0f);
-            this.vertices[0].Color = Color.Red;
-            this.vertices[1].Position = new Vector3(10f, 10f, 0f);
-            this.vertices[1].Color = Color.Yellow;
-            this.vertices[2].Position = new Vector3(10f, 0f, -5f);
-            this.vertices[2].Color = Color.Green;
-        }
-
-        private void loadHeightData()
-        {
-            this.heightData = new float[4, 3];
-
-            this.heightData[0, 0] = 0;
-            this.heightData[1, 0] = 0;
-            this.heightData[2, 0] = 0;
-            this.heightData[3, 0] = 0;
-
-            this.heightData[0, 1] = 0.5f;
-            this.heightData[1, 1] = 0;
-            this.heightData[2, 1] = -1.0f;
-            this.heightData[3, 1] = 0.2f;
-
-            this.heightData[0, 2] = 1.0f;
-            this.heightData[1, 2] = 1.2f;
-            this.heightData[2, 2] = 0.8f;
-            this.heightData[3, 2] = 0;
-
         }
     }
 }
