@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GraphicsPractical1
 {
-    class FrameRateCounter
+    class FrameRateCounter : DrawableGameComponent
     {
         /// <summary>
         /// The integer containing the number of frames drawn in the last second.
@@ -20,7 +20,7 @@ namespace GraphicsPractical1
         int frameCounter; 
         /// <summary>
         /// The integer counting the number of seconds passed since the last 
-        ///
+        /// </summary>
         int secondsPassed;
 
         /// <summary>
