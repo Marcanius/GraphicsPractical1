@@ -1,3 +1,4 @@
 *.cachefile
+*.suo
 /bin
 /obj
