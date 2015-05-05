@@ -28,7 +28,7 @@ namespace GraphicsPractical1
             this.Components.Add(this.frameRateCounter);
         }
         
-        // The initialize method of the game class.
+        // The initialize method of the game class. Used for graphics options.
         protected override void Initialize()
         {
             this.graphics.PreferredBackBufferWidth = 800;
@@ -41,7 +41,8 @@ namespace GraphicsPractical1
 
             base.Initialize();
         }
-
+        
+        // The loadContent method of the game class. Used to load all objects/effects.
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
