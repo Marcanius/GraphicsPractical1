@@ -41,7 +41,7 @@ namespace GraphicsPractical1
         /// </summary>
         /// <param name="heightMap"> The heightmap used to calculate the y position. </param>
         /// <param name="heightScale"> The float with which to scale te height. </param>
-        /// <returns></returns>
+        /// <returns> The array of vertices with their respective colors and positions. </returns>
         private VertexPositionColorNormal[] loadVertices(HeightMap heightMap, float heightScale)
         {
             VertexPositionColorNormal[] vertices = new VertexPositionColorNormal[this.width * this.height];

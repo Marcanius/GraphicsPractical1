@@ -65,10 +65,11 @@ namespace GraphicsPractical1
             this.terrain = new Terrain(new HeightMap(map), 0.2f, this.GraphicsDevice);
 
             // Loading of the camera and its position.
-            this.camera = new Camera(new Vector3(0, 60, 0), new Vector3(0, 0, -10), new Vector3(0, 1, 0));
+            this.camera = new Camera(new Vector3(0, 60, 0), new Vector3(0, 1, 0));
         }
 
         #region GameLoop
+
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit.
@@ -108,12 +109,13 @@ namespace GraphicsPractical1
                 pass.Apply();
             }
 
-            // Drawing the terrain
+            // Drawing the terrain.
             this.terrain.Draw(this.GraphicsDevice);
 
             base.Draw(gameTime);
         }
         #endregion
+
         #endregion
     }
 }

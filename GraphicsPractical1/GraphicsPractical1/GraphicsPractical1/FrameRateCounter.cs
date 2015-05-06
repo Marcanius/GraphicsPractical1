@@ -15,13 +15,12 @@ namespace GraphicsPractical1
         /// </summary>
         int frameCounter; 
         /// <summary>
-        /// The integer counting the number of seconds passed since the last 
+        /// The integer counting the number of seconds passed since the last Draw call.
         /// </summary>
         int secondsPassed;
 
         #endregion
 
-        /// <summary>
         public FrameRateCounter(Game game)
             : base(game)
         {
@@ -32,6 +31,10 @@ namespace GraphicsPractical1
 
         #region Methods
 
+        /// <summary>
+        /// Updates the framerate.
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
             if (secondsPassed != gameTime.TotalGameTime.Seconds)
@@ -42,6 +45,10 @@ namespace GraphicsPractical1
             }
         }
 
+        /// <summary>
+        /// Increases the framecounter. Obvs.
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Draw(GameTime gameTime)
         {
             frameCounter++;
@@ -51,6 +58,9 @@ namespace GraphicsPractical1
 
         #region Properties
 
+        /// <summary>
+        /// A property to return the framerate.
+        /// </summary>
         public int FrameRate
         {
             get { return frameRate; }

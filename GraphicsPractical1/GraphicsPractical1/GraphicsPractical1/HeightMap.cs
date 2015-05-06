@@ -24,7 +24,10 @@ namespace GraphicsPractical1
 
         #region Methods
 
-        // The loadHeightData method. This method is used to get the color from the texture and fill the heightData.
+        /// <summary>
+        /// The loadHeightData method. This method is used to get the color from the texture and fill the heightData.
+        /// </summary>
+        /// <param name="heightMap"></param>
         private void loadHeightData(Texture2D heightMap)
         {
             this.heightData = new byte[this.width, this.height];
@@ -42,20 +45,20 @@ namespace GraphicsPractical1
 
         #region properties
 
-        // Property to return or set the heightData byte array element
+        // Property to return or set the heightData byte array element.
         public byte this[int x, int y]
         {
             get { return this.heightData[x, y]; }
             set { this.heightData[x, y] = value; }
         }
         
-        // Property to return the width
+        // Property to return the width.
         public int Width
         {
             get { return this.width; }
         }
         
-        // Property to return the height
+        // Property to return the height.
         public int Height
         {
             get { return this.height; }
