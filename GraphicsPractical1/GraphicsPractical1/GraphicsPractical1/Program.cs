@@ -1,5 +1,3 @@
-using System;
-
 namespace GraphicsPractical1
 {
 #if WINDOWS || XBOX
