@@ -7,6 +7,8 @@ namespace GraphicsPractical1
 {
     public class Game1 : Game
     {
+        #region Variables
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -14,6 +16,9 @@ namespace GraphicsPractical1
         private BasicEffect effect;
         private Camera camera;
         private Terrain terrain;
+
+        #endregion
+        #region Methods
 
         // The construct for the game class.
         public Game1()
@@ -63,6 +68,7 @@ namespace GraphicsPractical1
             this.camera = new Camera(new Vector3(0, 60, 0), new Vector3(0, 0, -10), new Vector3(0, 1, 0));
         }
 
+        #region GameLoop
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit.
@@ -107,5 +113,7 @@ namespace GraphicsPractical1
 
             base.Draw(gameTime);
         }
+        #endregion
+        #endregion
     }
 }

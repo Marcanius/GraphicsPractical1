@@ -11,6 +11,8 @@ namespace GraphicsPractical1
     /// </summary>
     partial class Terrain
     {
+        #region Methods
+
         /// <summary>
         /// Determines the first run of colors.
         /// </summary>
@@ -84,5 +86,7 @@ namespace GraphicsPractical1
             
             }
         }
+
+        #endregion
     }
 }

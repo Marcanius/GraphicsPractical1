@@ -9,6 +9,7 @@ namespace GraphicsPractical1
 {
     partial class Terrain
     {
+        #region Variables
         private int width, height;
         private short[] indices;
 
@@ -16,6 +17,9 @@ namespace GraphicsPractical1
         private IndexBuffer indexBuffer;
 
         private VertexPositionColorNormal[] vertices;
+
+        #endregion
+        #region Methods
 
         public Terrain(HeightMap heightMap, float heightScale, GraphicsDevice device)
         {
@@ -120,6 +124,9 @@ namespace GraphicsPractical1
             device.SetVertexBuffer(this.vertexBuffer);
         }
 
+        #endregion
+        #region Properties
+
         // Property to return the width.
         public int Width
         {
@@ -131,5 +138,7 @@ namespace GraphicsPractical1
         {
             get { return this.height; }
         }
+
+        #endregion
     }
 }

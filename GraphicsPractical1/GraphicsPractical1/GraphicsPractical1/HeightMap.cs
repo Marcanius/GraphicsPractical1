@@ -9,9 +9,14 @@ namespace GraphicsPractical1
 {
     class HeightMap
     {
+        #region Variables
+
         // The variables
         private int width, height;
         private byte[,] heightData;
+
+        #endregion
+        #region Methods
 
         // The construct method of the HeightMap class.
         public HeightMap(Texture2D heightMap)
@@ -35,7 +40,10 @@ namespace GraphicsPractical1
                 for (int y = 0; y < this.height; y++)
                     this.heightData[x, y] = colorData[x + y * this.width].R;
         }
-        
+
+        #endregion
+        #region properties
+
         // Property to return or set the heightData byte array element
         public byte this[int x, int y]
         {
@@ -54,5 +62,7 @@ namespace GraphicsPractical1
         {
             get { return this.height; }
         }
+
+        #endregion
     }
 }

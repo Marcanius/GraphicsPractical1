@@ -10,6 +10,8 @@ namespace GraphicsPractical1
 {
     class FrameRateCounter : DrawableGameComponent
     {
+        #region Variables
+
         /// <summary>
         /// The integer containing the number of frames drawn in the last second.
         /// </summary>
@@ -22,6 +24,9 @@ namespace GraphicsPractical1
         /// The integer counting the number of seconds passed since the last 
         /// </summary>
         int secondsPassed;
+
+        #endregion
+        #region Methods
 
         /// <summary>
         public FrameRateCounter(Game game)
@@ -47,9 +52,14 @@ namespace GraphicsPractical1
             frameCounter++;
         }
 
+        #endregion
+        #region Properties
+
         public int FrameRate
         {
             get { return frameRate; }
         }
+
+        #endregion
     }
 }

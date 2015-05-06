@@ -14,9 +14,14 @@ namespace GraphicsPractical1
 {
     public class Camera
     {
+        #region Variables
+
         private Matrix viewMatrix, projectionMatrix;
         private Vector3 up, eye, focus, relativeFocus;
         float angleH, deltaAngleH, angleV, deltaAngleV;
+
+        #endregion
+        #region Methods
 
         public Camera(Vector3 camEye, Vector3 camFocus, Vector3 camUp, float aspectRatio = 4.0f / 3.0f)
         {
@@ -93,6 +98,9 @@ namespace GraphicsPractical1
             Focus = Focus + direction * timeStep;
         }
 
+        #endregion
+        #region Properties
+
         private void updateViewMatrix()
         {
             this.viewMatrix = Matrix.CreateLookAt(this.eye, this.focus, this.up);
@@ -127,6 +135,8 @@ namespace GraphicsPractical1
                 this.updateViewMatrix();
             }
         }
+
+        #endregion
     }
 }
 

@@ -10,9 +10,9 @@ namespace GraphicsPractical1
         /// </summary>
         static void Main(string[] args)
         {
-            using (Game1 game = new Game1()) 
+            using (Game1 game = new Game1())
             {
-                game.Run(); 
+                game.Run();
             }
         }
     }

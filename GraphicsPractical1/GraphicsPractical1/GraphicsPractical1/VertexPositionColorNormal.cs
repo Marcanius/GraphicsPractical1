@@ -9,18 +9,13 @@ namespace GraphicsPractical1
 {
     struct VertexPositionColorNormal : IVertexType
     {
-        /// <summary>
-        /// 
-        /// </summary>
+        #region Variables
+
         public Vector3 Position;
-        /// <summary>
-        /// 
-        /// </summary>
         public Color Color;
-        /// <summary>
-        /// 
-        /// </summary>
         public Vector3 Normal;
+
+        #endregion
 
         public VertexPositionColorNormal(Vector3 position, Color color, Vector3 normal)
         {
