@@ -75,10 +75,10 @@ namespace GraphicsPractical1
         {
             this.up = camUp;
             this.position = camEye;
-            this.UpdateFocus();
 
-            this.angleH = 1;
-            this.angleV = 0;
+            this.angleH = 7;
+            this.angleV = -0.55f;
+            this.UpdateFocus();
 
             this.updateViewMatrix();
             this.projectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, aspectRatio, 1.0f, 300.0f);

@@ -65,7 +65,7 @@ namespace GraphicsPractical1
             this.terrain = new Terrain(new HeightMap(map), 0.2f, this.GraphicsDevice);
 
             // Loading of the camera and its position.
-            this.camera = new Camera(new Vector3(0, 60, 0), new Vector3(0, 1, 0));
+            this.camera = new Camera(new Vector3(-100, 90, -85), new Vector3(0, 1, 0));
         }
 
         #region GameLoop
