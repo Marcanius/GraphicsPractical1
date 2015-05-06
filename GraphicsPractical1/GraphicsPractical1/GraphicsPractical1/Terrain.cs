@@ -10,6 +10,7 @@ namespace GraphicsPractical1
     partial class Terrain
     {
         #region Variables
+
         private int width, height;
         private short[] indices;
 
@@ -19,6 +20,7 @@ namespace GraphicsPractical1
         private VertexPositionColorNormal[] vertices;
 
         #endregion
+
         #region Methods
 
         public Terrain(HeightMap heightMap, float heightScale, GraphicsDevice device)
@@ -43,7 +45,7 @@ namespace GraphicsPractical1
         /// Creates the array of vertices and fills it.
         /// </summary>
         /// <param name="heightMap"> The heightmap used to calculate the y position. </param>
-        /// <param name="heightScale"> The float with which to scale te height. </param>
+        /// <param name="heightScale"> The float with which to scale the height. </param>
         /// <returns></returns>
         private VertexPositionColorNormal[] loadVertices(HeightMap heightMap, float heightScale)
         {
@@ -62,6 +64,7 @@ namespace GraphicsPractical1
             return vertices;
         }
 
+        //Sets up the indices (instead of vertices, to save space).
         private void setupIndices()
         {
             this.indices = new short[(this.width - 1) * (this.height - 1) * 6];
@@ -86,6 +89,7 @@ namespace GraphicsPractical1
                 }
         }
 
+        //Calculates normals for all the indices
         private void calculateNormals()
         {
             for (int i = 0; i < this.indices.Length / 3; i++)
@@ -109,7 +113,9 @@ namespace GraphicsPractical1
                 this.vertices[i].Normal.Normalize();
         }
 
-        // The copyToBuffers method. Used to store all the vertices and indices in the GPU memory.
+        /// <summary>
+        /// Used to store all the vertices and indices in the GPU memory
+        /// </summary>
         private void copyToBuffers(GraphicsDevice device)
         {
             this.vertexBuffer = new VertexBuffer(device, VertexPositionColorNormal.VertexDeclaration,
@@ -125,6 +131,7 @@ namespace GraphicsPractical1
         }
 
         #endregion
+
         #region Properties
 
         // Property to return the width.
