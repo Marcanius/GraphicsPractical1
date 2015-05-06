@@ -1,13 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
+using System;
 
 
 namespace GraphicsPractical1
@@ -29,19 +22,19 @@ namespace GraphicsPractical1
 
         #region Vector3s
         /// <summary>
-        /// 
+        /// The Vector3 pointing up, used in the viewMatrix.
         /// </summary>
         private Vector3 up;
         /// <summary>
-        /// 
+        /// The Vector3 pointing to the location of the camera.
         /// </summary>
-        private Vector3 eye;
+        private Vector3 position;
         /// <summary>
-        /// 
+        /// The Vector3 pointing to the point at which the camera is looking. Always at a distance of 1 from the camera.
         /// </summary>
         private Vector3 focus;
         /// <summary>
-        /// 
+        /// The Vector3 pointing to the focus, relative to the camera. Is of normalised length. 
         /// </summary>
         private Vector3 relativeFocus;
         #endregion
@@ -56,39 +49,39 @@ namespace GraphicsPractical1
         /// </summary>
         private float angleV;
         /// <summary>
-        /// 
+        /// The difference in our horizontal angle.
         /// </summary>
         private float deltaAngleH;
         /// <summary>
-        /// 
+        /// The difference in our vertical angle.
         /// </summary>
         private float deltaAngleV;
         #endregion
 
         #region Speeds
         /// <summary>
-        /// 
+        /// The speed at which we move the camera.
         /// </summary>
-        private int moveSpeed = 20;
+        private readonly int moveSpeed = 20;
         /// <summary>
-        /// 
+        /// The speed at which we turn the camera.
         /// </summary>
-        private float turnSpeed = 0.5f;
+        private readonly float turnSpeed = 0.5f;
         #endregion
 
         #endregion
 
-        public Camera(Vector3 camEye, Vector3 camFocus, Vector3 camUp, float aspectRatio = 4.0f / 3.0f)
+        public Camera(Vector3 camEye, Vector3 camUp, float aspectRatio = 4.0f / 3.0f)
         {
             this.up = camUp;
-            this.eye = camEye;
-            this.focus = camFocus;
+            this.position = camEye;
+            this.UpdateFocus();
+
+            this.angleH = 1;
+            this.angleV = 0;
+
             this.updateViewMatrix();
             this.projectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, aspectRatio, 1.0f, 300.0f);
-            angleH = 1;
-            angleV = 0;
-
-            UpdateFocus();
         }
 
         #region Methods
@@ -158,7 +151,7 @@ namespace GraphicsPractical1
         /// </summary>
         private void updateViewMatrix()
         {
-            this.viewMatrix = Matrix.CreateLookAt(this.eye, this.focus, this.up);
+            this.viewMatrix = Matrix.CreateLookAt(this.position, this.focus, this.up);
         }
 
         /// <summary>
@@ -188,10 +181,10 @@ namespace GraphicsPractical1
 
         public Vector3 Eye
         {
-            get { return this.eye; }
+            get { return this.position; }
             set
             {
-                this.eye = value;
+                this.position = value;
                 this.updateViewMatrix();
             }
         }
