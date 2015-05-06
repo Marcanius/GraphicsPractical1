@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -17,6 +18,7 @@ namespace GraphicsPractical1
         private Terrain terrain;
 
         #endregion
+        #region Methods
 
         // The construct for the game class.
         public Game1()
@@ -28,8 +30,6 @@ namespace GraphicsPractical1
             this.frameRateCounter = new FrameRateCounter(this);
             this.Components.Add(this.frameRateCounter);
         }
-
-        #region Methods
 
         // The initialize method of the game class. Used for graphics options.
         protected override void Initialize()

@@ -1,4 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace GraphicsPractical1
@@ -12,6 +16,7 @@ namespace GraphicsPractical1
         private byte[,] heightData;
 
         #endregion
+        #region Methods
 
         // The construct method of the HeightMap class.
         public HeightMap(Texture2D heightMap)
@@ -21,9 +26,7 @@ namespace GraphicsPractical1
 
             this.loadHeightData(heightMap);
         }
-
-        #region Methods
-
+        
         // The loadHeightData method. This method is used to get the color from the texture and fill the heightData.
         private void loadHeightData(Texture2D heightMap)
         {

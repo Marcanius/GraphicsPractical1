@@ -1,4 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace GraphicsPractical1
 {
@@ -20,6 +26,7 @@ namespace GraphicsPractical1
         int secondsPassed;
 
         #endregion
+        #region Methods
 
         /// <summary>
         public FrameRateCounter(Game game)
@@ -29,8 +36,6 @@ namespace GraphicsPractical1
             frameCounter = 0;
             secondsPassed = 0;
         }
-
-        #region Methods
 
         public override void Update(GameTime gameTime)
         {

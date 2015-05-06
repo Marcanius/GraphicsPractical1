@@ -1,4 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace GraphicsPractical1
@@ -15,6 +19,7 @@ namespace GraphicsPractical1
         private VertexPositionColorNormal[] vertices;
 
         #endregion
+        #region Methods
 
         public Terrain(HeightMap heightMap, float heightScale, GraphicsDevice device)
         {
@@ -28,8 +33,6 @@ namespace GraphicsPractical1
 
             this.copyToBuffers(device);
         }
-
-        #region Methods
 
         public void Draw(GraphicsDevice device)
         {
