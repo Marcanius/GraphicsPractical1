@@ -20,16 +20,19 @@ namespace GraphicsPractical1
             this.Normal = normal;
         }
 
+        // Explains to the graphics card how much, and what kind of memory to set aside for each vertex.
         public static VertexElement[] VertexElements = 
         {
-            new VertexElement(0,VertexElementFormat.Vector3,VertexElementUsage.Position,0),
-            new VertexElement(sizeof(float)*3,VertexElementFormat.Color,VertexElementUsage.Color,0),
-            new VertexElement(sizeof(float)*3+4,VertexElementFormat.Vector3,VertexElementUsage.Normal,0),
+            new VertexElement(0,VertexElementFormat.Vector3,VertexElementUsage.Position, 0),
+            new VertexElement(sizeof(float) * 3,VertexElementFormat.Color,VertexElementUsage.Color, 0),
+            new VertexElement(sizeof(float) * 3 + 4,VertexElementFormat.Vector3,VertexElementUsage.Normal, 0),
         };
 
+        // Creates the vertex declaration, using the size of the VertexElements.
         public static readonly VertexDeclaration VertexDeclaration = 
             new VertexDeclaration(VertexPositionColorNormal.VertexElements);
 
+        // Returns the VertexDeclaration.
         VertexDeclaration IVertexType.VertexDeclaration
         {
             get { return VertexPositionColorNormal.VertexDeclaration; }

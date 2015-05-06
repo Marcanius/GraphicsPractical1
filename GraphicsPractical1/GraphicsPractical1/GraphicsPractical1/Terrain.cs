@@ -122,6 +122,7 @@ namespace GraphicsPractical1
         }
 
         #endregion
+
         #region Properties
 
         // Property to return the width.

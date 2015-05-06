@@ -48,6 +48,7 @@ namespace GraphicsPractical1
         }
 
         #endregion
+
         #region Properties
 
         public int FrameRate

@@ -39,6 +39,7 @@ namespace GraphicsPractical1
         }
 
         #endregion
+
         #region properties
 
         // Property to return or set the heightData byte array element
