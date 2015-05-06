@@ -20,9 +20,11 @@ namespace GraphicsPractical1
         private Vector3 up, eye, focus, relativeFocus;
         float angleH, deltaAngleH, angleV, deltaAngleV;
 
-        #endregion
-        #region Methods
+        private int moveSpeed = 20;
+        private float turnSpeed = 0.5f;
 
+        #endregion
+        
         public Camera(Vector3 camEye, Vector3 camFocus, Vector3 camUp, float aspectRatio = 4.0f / 3.0f)
         {
             this.up = camUp;
@@ -36,6 +38,8 @@ namespace GraphicsPractical1
             UpdateFocus();
         }
 
+        #region Methods
+
         public void Update(GameTime gT)
         {
 
@@ -48,15 +52,15 @@ namespace GraphicsPractical1
 
             // Check to see if the left key is pressed.
             if (kbState.IsKeyDown(Keys.Left))
-                deltaAngleH += -0.5f * timeStep;
+                deltaAngleH += -turnSpeed * timeStep;
             // Check to see if the right key is pressed.
             if (kbState.IsKeyDown(Keys.Right))
-                deltaAngleH += 0.5f * timeStep;
+                deltaAngleH += turnSpeed * timeStep;
             if (kbState.IsKeyDown(Keys.Up))
-                deltaAngleV += -0.5f * timeStep;
+                deltaAngleV += -turnSpeed * timeStep;
             // Check to see if the right key is pressed.
             if (kbState.IsKeyDown(Keys.Down))
-                deltaAngleV += 0.5f * timeStep;
+                deltaAngleV += turnSpeed * timeStep;
 
             // Check to see if the matrix needs to be adjusted with the new angle.
             if (deltaAngleH != 0 || deltaAngleV != 0)
@@ -69,19 +73,19 @@ namespace GraphicsPractical1
 
             // The four cardinal directions.
             if (kbState.IsKeyDown(Keys.W))
-                moveCamera(timeStep, new Vector3((float)Math.Cos(angleH), 0, (float)Math.Sin(angleH)) * 10);
+                moveCamera(timeStep, new Vector3((float)Math.Cos(angleH), 0, (float)Math.Sin(angleH)) * moveSpeed);
             if (kbState.IsKeyDown(Keys.A))
-                moveCamera(timeStep, new Vector3((float)Math.Sin(angleH), 0, -(float)Math.Cos(angleH)) * 10);
+                moveCamera(timeStep, new Vector3((float)Math.Sin(angleH), 0, -(float)Math.Cos(angleH)) * moveSpeed);
             if (kbState.IsKeyDown(Keys.S))
-                moveCamera(timeStep, new Vector3(-(float)Math.Cos(angleH), 0, -(float)Math.Sin(angleH)) * 10);
+                moveCamera(timeStep, new Vector3(-(float)Math.Cos(angleH), 0, -(float)Math.Sin(angleH)) * moveSpeed);
             if (kbState.IsKeyDown(Keys.D))
-                moveCamera(timeStep, new Vector3(-(float)Math.Sin(angleH), 0, (float)Math.Cos(angleH)) * 10);
+                moveCamera(timeStep, new Vector3(-(float)Math.Sin(angleH), 0, (float)Math.Cos(angleH)) * moveSpeed);
 
             // Up and Down
             if (kbState.IsKeyDown(Keys.Space))
-                moveCamera(timeStep, new Vector3(0, 1, 0) * 10);
+                moveCamera(timeStep, new Vector3(0, 1, 0) * moveSpeed);
             if (kbState.IsKeyDown(Keys.LeftShift))
-                moveCamera(timeStep, new Vector3(0, -1, 0) * 10);
+                moveCamera(timeStep, new Vector3(0, -1, 0) * moveSpeed);
         }
 
         private void UpdateFocus()
@@ -99,6 +103,7 @@ namespace GraphicsPractical1
         }
 
         #endregion
+
         #region Properties
 
         private void updateViewMatrix()
