@@ -1,7 +1,5 @@
+*.cache
 *.cachefile
 *.suo
-bin/
-obj/
-GraphicsPractical1/GraphicsPractical1/GraphicsPractical1/bin/x86/Debug/Content/heightmap.xnb
-GraphicsPractical1/GraphicsPractical1/GraphicsPractical1Content/obj/x86/Debug/GraphicsPractical1Content.contentproj.FileListAbsolute.txt
-GraphicsPractical1/GraphicsPractical1/GraphicsPractical1Content/obj/x86/Debug/GraphicsPractical1Content.contentproj.FileListAbsolute.txt
+bin
+obj
